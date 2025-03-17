@@ -6,7 +6,7 @@ import time
 
 # API配置
 DEEPSEEK_API_KEY = "DEEPSEEK_API_KEY"
-DEEPSEEK_BASE_URL = "https://ark.cn-beijing.volces.com/api/v3/chat/completions"
+DEEPSEEK_BASE_URL = "https:// https://api.deepseek.com/v1/chat/completions"
 
 OPENAI_API_KEY = "OPENAI_API_KEY"
 OPENAI_BASE_URL = "https://api.openai.com/v1/chat/completions"
