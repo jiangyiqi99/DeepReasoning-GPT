@@ -5,11 +5,19 @@ import sys
 import time
 
 # API配置
-DEEPSEEK_API_KEY = "DEEPSEEK_API_KEY"
-DEEPSEEK_BASE_URL = "https:// https://api.deepseek.com/v1/chat/completions"
+DEEPSEEK_API_KEY = "DS_API_KEY"
+# DEEPSEEK_BASE_URL = "https://api.deepseek.com/v1/chat/completions" # Official DS_API
+DEEPSEEK_BASE_URL = "https://ark.cn-beijing.volces.com/api/v3/chat/completions" # Volces DS_API
+
 
 OPENAI_API_KEY = "OPENAI_API_KEY"
 OPENAI_BASE_URL = "https://api.openai.com/v1/chat/completions"
+
+# 设置 Socks5 代理
+proxies = {
+    "http": "socks5h://127.0.0.1:1080",
+    "https": "socks5h://127.0.0.1:1080"
+}
 
 CONVERSATION_MAX_HISTORY = 100
 
@@ -25,7 +33,8 @@ class ConversationHistory:
         self.history = []
         self.max_history = max_history
 
-    def add_interaction(self, user_query, reasoning, ai_response):
+    def add_interaction(self, user_query,
+                        reasoning, ai_response):
         """
         添加一轮完整的交互到历史记录
 
@@ -275,7 +284,8 @@ def get_openai_answer_stream(prompt, reasoning_content, conversation_history=Non
         OPENAI_BASE_URL,
         headers=headers,
         data=json.dumps(data),
-        stream=True  # 使用流式请求
+        stream=True,  # 使用流式请求
+        proxies=proxies
     )
 
     # 检查响应状态
